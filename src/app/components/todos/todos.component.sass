@@ -1,8 +1,8 @@
 .todo 
-	display: flex
 	padding: 10px 15px
 	background-color: #FFF
 	border-bottom: 1px solid #DDD
+	text-align: center
 
 
 .todo:nth-child(even) 
@@ -11,10 +11,6 @@
 
 .todo:last-of-type 
 	border-bottom: 0
-
-
-.todo .id 
-	flex: 1 1 50px
 
 
 .todo .content 
@@ -51,3 +47,18 @@
 	padding: 10px 15px
 	font-size: 18px
 	font-weight: 700
+
+.list 
+	padding: 10px 15px
+	background-color: #FFF
+	border-bottom: 1px solid #333333
+	display: flex
+
+
+.list .content 
+	flex: 1 1 100%
+	margin-left: 26.9px
+
+
+.list.done .content 
+	text-decoration: line-through

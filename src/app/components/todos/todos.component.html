@@ -1,4 +1,5 @@
 <div class="todos">
+    <h1> {{this.performed}} / {{this.counter}}</h1>
     <form (submit)= "addTodo()">
         <input
             type="text"
@@ -7,12 +8,30 @@
             class="todo-input"
             [(ngModel)]="inputTodo"
         />
-        <input type="submit" value="Add Todo" class="todo-submit"/>
+        <button class="todo-submit">Add Todo</button>
     </form>
-    <div *ngFor="let todo of todos; let i=index;" class="todo 
-    {{ (todo.completed ? 'done' : '')}}">
-        <div class="id">{{i}}</div>
-        <div class="content" (click)="toggleDone(i)">{{ todo.content }}</div>
+    <div *ngFor="let todo of todos; let i=index;"
+        class="todo"
+    >
+        <div class="content" (click)="toggleDoneTodo(i)">{{ todo.name }}</div>
+        <div *ngIf="todo.open">
+            <div *ngFor="let list of todo.lists; let j=index;"
+                class="list {{(list.completed ? 'done' : '')}}"
+            >
+                <div class="content" (click)="toggleDoneList(j, i)">{{ list.content }}</div>
+                <button class="delete" (click)="deleteList(j, i)">X</button>
+            </div>
+            <form (submit)= "addList(i)">
+                <input
+                    type="text"
+                    name="inputList"
+                    placeholder="Enter list..."
+                    class="list-input"
+                    [(ngModel)]="inputList"
+                />
+            </form>
+        </div>
+        <div> {{todo.performed}} / {{todo.counter}} </div>
         <button class="delete" (click)="deleteTodo(i)">Remove</button>
     </div>
 </div>
